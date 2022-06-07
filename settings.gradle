@@ -14,3 +14,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MVI Compose"
 include ':app'
+include ':base:architecture'
+include ':base:common'
+include ':data'
+include ':data-api'
+include ':feature:rates'

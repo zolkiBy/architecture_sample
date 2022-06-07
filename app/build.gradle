@@ -4,17 +4,21 @@ plugins {
 }
 
 android {
-    namespace 'com.example.mvicompose'
-    compileSdk 32
+    namespace "com.example.mvicompose"
+    compileSdk AppConfig.COMPILE_SDK
 
     defaultConfig {
-        applicationId "com.example.mvicompose"
-        minSdk 23
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId AppConfig.APPLICATION_ID
+        minSdk AppConfig.MIN_SDK
+        targetSdk AppConfig.TARGET_SDK
+        versionCode AppConfig.VERSION_CODE
+        versionName AppConfig.VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
 
     buildTypes {
@@ -30,14 +34,56 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion AndroidX.composeVersion
+    }
 }
 
 dependencies {
+    implementation project(path: ':base:architecture')
+    implementation project(path: ':base:common')
+    implementation project(path: ':data')
+    implementation project(path: ':data-api')
+    implementation project(path: ':feature:rates')
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation (AndroidX.coreKtx)
+    implementation (AndroidX.appCompat)
+    implementation (AndroidX.lifecycleRuntime)
+    implementation (AndroidX.lifecycleViewModel)
+    implementation (Material.material)
+
+    implementation (AndroidX.composeUi)
+    implementation (AndroidX.composeMaterial)
+    implementation (AndroidX.composeAnimations)
+    implementation (AndroidX.composeTooling)
+    implementation (AndroidX.composeFoundation)
+    implementation (AndroidX.lifecycleViewModelCompose)
+
+    implementation (Coroutines.core)
+    implementation (Coroutines.android)
+
+    implementation(Kotlin.serialization)
+
+    implementation(Okhttp.client)
+    implementation(Okhttp.loggingInterceptor)
+    implementation(Retrofit.retrofit)
+    implementation(Retrofit.serializationConverter)
+
+    implementation (Di.koinAndroid)
+    implementation (Di.koinCompose)
+
+    testImplementation (UnitTests.junit)
+    testImplementation (Coroutines.test)
+
+    androidTestImplementation (AndroidX.testExtJunit)
+    androidTestImplementation (AndroidX.testEspressoCore)
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+    }
 }
