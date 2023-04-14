@@ -6,16 +6,16 @@ object Common {
 
 object Kotlin {
     @Suppress("MemberVisibilityCanBePrivate")
-    const val version = "1.6.21"
-    const val kspVersion = "$version-1.0.5"
+    const val version = "1.8.20"
+    const val kspVersion = "$version-1.0.10"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
     const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
-    const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3"
-    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.2"
+    const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
+    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 }
 
 object Coroutines {
-    private const val version = "1.6.1"
+    private const val version = "1.6.4"
     const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
     const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
     const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -27,14 +27,14 @@ object Retrofit {
 }
 
 object Okhttp {
-    private const val version = "4.9.3"
+    private const val version = "4.10.0"
     const val client = "com.squareup.okhttp3:okhttp:$version"
     const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
 }
 
 object Di {
-    private const val version = "3.2.0"
-    private const val koinKspVersion = "1.0.0-beta-2"
+    private const val version = "3.4.0"
+    private const val koinKspVersion = "1.2.0"
     const val koinAndroid = "io.insert-koin:koin-android:$version"
     const val koinAnnotations = "io.insert-koin:koin-annotations:$koinKspVersion"
     const val koinKspCompiler = "io.insert-koin:koin-ksp-compiler:$koinKspVersion"
@@ -42,20 +42,21 @@ object Di {
 }
 
 object Material {
-    const val material = "com.google.android.material:material:1.6.0"
+    const val material = "com.google.android.material:material:1.9.0-rc01"
 }
 
 object AndroidX {
     @Suppress("MemberVisibilityCanBePrivate")
-    const val composeVersion = "1.2.0-beta02"
+    const val composeVersion = "1.4.1"
+    const val composeCompilerVersion = "1.4.5"
     private const val lifecycleVersion = "2.4.1"
-    private const val testVersion = "1.4.0"
-    private const val extVersion = "1.1.3"
-    private const val roomVersion = "2.4.2"
+    private const val testVersion = "1.5.0"
+    private const val extVersion = "1.1.5"
+    private const val roomVersion = "2.5.1"
 
-    const val coreKtx = "androidx.core:core-ktx:1.7.0"
+    const val coreKtx = "androidx.core:core-ktx:1.10.0"
 
-    const val appCompat = "androidx.appcompat:appcompat:1.4.1"
+    const val appCompat = "androidx.appcompat:appcompat:1.6.1"
 
     const val composeRuntime = "androidx.compose.runtime:runtime:$composeVersion"
     const val composeFoundation = "androidx.compose.foundation:foundation:$composeVersion"

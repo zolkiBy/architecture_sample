@@ -9,8 +9,6 @@ android {
 
     defaultConfig {
         minSdk = AppConfig.MIN_SDK
-        targetSdk = AppConfig.TARGET_SDK
-
         consumerProguardFiles("consumer-rules.pro")
     }
 
