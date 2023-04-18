@@ -37,7 +37,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -50,14 +53,8 @@ android {
 }
 
 dependencies {
-    implementation(
-        project(
-            mapOf(
-                "path" to ":base:common",
-                "path" to ":data-api",
-            )
-        )
-    )
+    implementation(project(mapOf("path" to ":base:common")))
+    implementation(project(mapOf("path" to ":data-api")))
 
     implementation(Kotlin.serialization)
 
@@ -66,6 +63,7 @@ dependencies {
     implementation(Retrofit.retrofit)
     implementation(Retrofit.serializationConverter)
 
-    testImplementation (UnitTests.junit)
-    testImplementation (Coroutines.test)
+
+    testImplementation(UnitTests.junit)
+    testImplementation(Coroutines.test)
 }

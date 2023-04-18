@@ -28,6 +28,8 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":base:common")))
+
     implementation(Coroutines.core)
     implementation(Coroutines.android)
 

@@ -1,9 +1,9 @@
 package com.example.mvicompose.di
 
-import com.example.data.api.repository.ExchangeRatesRepository
-import com.example.data.net.AuthInterceptor
-import com.example.data.net.ExchangeRatesApi
-import com.example.data.repository.ExchangeRatesRepositoryImpl
+import com.example.base.network.interceptors.AuthInterceptor
+import com.example.rates.data.repository.ExchangeRatesRepository
+import com.example.rates.data.net.ExchangeRatesApi
+import com.example.rates.data.repository.ExchangeRatesRepositoryImpl
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json

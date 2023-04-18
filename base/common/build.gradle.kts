@@ -8,7 +8,7 @@ android {
     compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
-        minSdk = 23
+        minSdk = AppConfig.MIN_SDK
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -30,4 +30,11 @@ android {
 
 dependencies {
     api(Common.logger)
+
+    api(Coroutines.core)
+    api(Coroutines.android)
+    api(Coroutines.test)
+
+    api(AndroidX.navigationFragment)
+    api(AndroidX.navigationUi)
 }

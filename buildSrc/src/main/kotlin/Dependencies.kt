@@ -53,10 +53,19 @@ object AndroidX {
     private const val testVersion = "1.5.0"
     private const val extVersion = "1.1.5"
     private const val roomVersion = "2.5.1"
+    private const val coreKtxVersion = "1.10.0"
+    private const val appcompatVersion = "1.6.1"
+    private const val constrainyLayoutVersion = "2.1.4"
+    private const val navigationVersion = "2.5.3"
 
-    const val coreKtx = "androidx.core:core-ktx:1.10.0"
+    const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
 
-    const val appCompat = "androidx.appcompat:appcompat:1.6.1"
+    const val appCompat = "androidx.appcompat:appcompat:$appcompatVersion"
+
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constrainyLayoutVersion"
+
+    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    const val navigationUi = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     const val composeRuntime = "androidx.compose.runtime:runtime:$composeVersion"
     const val composeFoundation = "androidx.compose.foundation:foundation:$composeVersion"
@@ -66,7 +75,7 @@ object AndroidX {
     const val composeMaterialIconsExtended = "androidx.compose.material:material-icons-extended:$composeVersion"
     const val composeAnimations = "androidx.compose.animation:animation:$composeVersion"
     const val activityCompose = "androidx.activity:activity-compose:1.4.0"
-    const val navigationCompose = "androidx.navigation:navigation-compose:2.4.1"
+    const val navigationCompose = "androidx.navigation:navigation-compose:$navigationVersion"
     const val lifecycleViewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion"
     const val composeTooling = "androidx.compose.ui:ui-tooling:$composeVersion"
     const val composeToolingPreview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
