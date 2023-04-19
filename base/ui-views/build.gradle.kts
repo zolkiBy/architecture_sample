@@ -26,11 +26,18 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
     api(AndroidX.coreKtx)
     api(AndroidX.appCompat)
+    api(AndroidX.fragment)
     api(AndroidX.constraintLayout)
+
     api(Material.material)
+
+    api(ThirdParties.viewBinding)
 }

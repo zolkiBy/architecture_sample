@@ -55,12 +55,14 @@ object AndroidX {
     private const val roomVersion = "2.5.1"
     private const val coreKtxVersion = "1.10.0"
     private const val appcompatVersion = "1.6.1"
+    private const val fragmentVersion = "1.5.6"
     private const val constrainyLayoutVersion = "2.1.4"
     private const val navigationVersion = "2.5.3"
 
     const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
 
     const val appCompat = "androidx.appcompat:appcompat:$appcompatVersion"
+    const val fragment = "androidx.fragment:fragment-ktx:$fragmentVersion"
 
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constrainyLayoutVersion"
 
@@ -85,14 +87,20 @@ object AndroidX {
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
 
-    const val runtime = "androidx.room:room-runtime:$roomVersion"
-    const val ktx = "androidx.room:room-ktx:$roomVersion"
-    const val compiler = "androidx.room:room-compiler:$roomVersion"
+    const val roomRuntime = "androidx.room:room-runtime:$roomVersion"
+    const val roomKtx = "androidx.room:room-ktx:$roomVersion"
+    const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
 
     const val testCore = "androidx.test:core:$testVersion"
     const val testRules = "androidx.test:rules:$testVersion"
     const val testEspressoCore = "androidx.test.espresso:espresso-core:3.4.0"
     const val testExtJunit = "androidx.test.ext:junit-ktx:$extVersion"
+}
+
+object ThirdParties{
+    private const val viewBindingVersion = "1.5.9"
+
+    const val viewBinding = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$viewBindingVersion"
 }
 
 object UnitTests {
