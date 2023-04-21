@@ -49,11 +49,9 @@ dependencies {
     implementation project(path: ':base:network')
     implementation project(path: ':base:ui-compose')
     implementation project(path: ':base:ui-views')
+    implementation project(path: ':base:di')
 
     implementation project(path: ':feature:rates')
-
-    implementation (Di.koinAndroid)
-    implementation (Di.koinCompose)
 
     testImplementation (UnitTests.junit)
     testImplementation (Coroutines.test)

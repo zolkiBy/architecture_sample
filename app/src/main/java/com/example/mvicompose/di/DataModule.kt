@@ -1,25 +1,29 @@
 package com.example.mvicompose.di
 
+import com.example.base.di.NAME_DISPATCHER_IO
+import com.example.base.di.NAME_DISPATCHER_MAIN
 import com.example.base.network.interceptors.AuthInterceptor
-import com.example.rates.data.repository.ExchangeRatesRepository
-import com.example.rates.data.net.ExchangeRatesApi
-import com.example.rates.data.repository.ExchangeRatesRepositoryImpl
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
-val dataModule = module {
+val commonModule = module {
+    single(named(NAME_DISPATCHER_MAIN)) { Dispatchers.Main } bind CoroutineDispatcher::class
+    single(named(NAME_DISPATCHER_IO)) { Dispatchers.IO } bind CoroutineDispatcher::class
+}
+
+val networkModule = module {
     single { provideHttpClient() }
     single { provideRetrofit(okHttpClient = get()) }
-    single { provideExchangeRatesApi(retrofit = get()) }
-
-    single { ExchangeRatesRepositoryImpl(ratesApi = get()) } bind ExchangeRatesRepository::class
 }
 
 private fun provideHttpClient(): OkHttpClient =
@@ -35,7 +39,3 @@ private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .client(okHttpClient)
         .build()
-
-private fun provideExchangeRatesApi(retrofit: Retrofit): ExchangeRatesApi {
-    return retrofit.create(ExchangeRatesApi::class.java)
-}
