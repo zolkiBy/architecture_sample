@@ -35,6 +35,7 @@ dependencies {
     api(AndroidX.coreKtx)
     api(AndroidX.appCompat)
     api(AndroidX.fragment)
+    api(AndroidX.lifecycleRuntime)
     api(AndroidX.constraintLayout)
 
     api(Material.material)

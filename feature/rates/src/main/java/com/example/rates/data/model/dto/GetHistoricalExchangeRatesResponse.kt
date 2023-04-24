@@ -2,7 +2,9 @@ package com.example.rates.data.model.dto
 
 import com.example.rates.data.model.CurrencyRate
 import com.example.rates.data.model.ExchangeRates
+import kotlinx.serialization.Serializable
 
+@Serializable
 class GetHistoricalExchangeRatesResponse : BaseRatesResponse() {
 
     fun toExchangeRates(): ExchangeRates? {

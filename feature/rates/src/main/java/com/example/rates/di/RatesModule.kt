@@ -15,7 +15,7 @@ import retrofit2.Retrofit
 val ratesModule = module {
     factory<Clock> { Clock.System }
     single { provideExchangeRatesApi(retrofit = get()) }
-    single<ExchangeRatesRepository> { ExchangeRatesRepositoryImpl(ratesApi = get()) }
+    single<ExchangeRatesRepository> { ExchangeRatesRepositoryImpl(ratesApi = get(), coroutineDispatcher = get(named(NAME_DISPATCHER_IO))) }
     single { GetExchangeRatesUseCase(coroutineDispatcher = get(named(NAME_DISPATCHER_IO)), exchangeRatesRepository = get(), clock = get()) }
     viewModel { ExchangeRatesViewModel(exchangeRatesUseCase = get()) }
 }

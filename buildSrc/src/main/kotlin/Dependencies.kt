@@ -49,7 +49,7 @@ object AndroidX {
     @Suppress("MemberVisibilityCanBePrivate")
     const val composeVersion = "1.4.1"
     const val composeCompilerVersion = "1.4.5"
-    private const val lifecycleVersion = "2.4.1"
+    private const val lifecycleVersion = "2.6.1"
     private const val testVersion = "1.5.0"
     private const val extVersion = "1.1.5"
     private const val roomVersion = "2.5.1"

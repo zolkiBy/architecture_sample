@@ -33,9 +33,14 @@ private fun provideHttpClient(): OkHttpClient =
         .build()
 
 @OptIn(ExperimentalSerializationApi::class)
-private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
-    Retrofit.Builder()
+private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    val json = Json {
+        ignoreUnknownKeys = true
+        isLenient = true
+    }
+    return Retrofit.Builder()
         .baseUrl("https://openexchangerates.org/api/")
-        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .client(okHttpClient)
         .build()
+}

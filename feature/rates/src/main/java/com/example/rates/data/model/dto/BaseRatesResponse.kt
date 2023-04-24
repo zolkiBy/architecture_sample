@@ -1,7 +1,9 @@
 package com.example.rates.data.model.dto
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 open class BaseRatesResponse(
     @SerialName("timestamp") val timestamp: Long? = null,
     @SerialName("base") val base: String? = null,
