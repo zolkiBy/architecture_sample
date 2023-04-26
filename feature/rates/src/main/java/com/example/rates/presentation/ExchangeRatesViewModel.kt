@@ -21,11 +21,13 @@ class ExchangeRatesViewModel(private val exchangeRatesUseCase: GetExchangeRatesU
 
 
     fun onBtnClicked() {
+        _uiState.value = ExchangeRatesUiState.Loading(true)
         viewModelScope.launch {
             exchangeRatesUseCase(GetExchangeRatesUseCase.Params(2022))
                 .collect(
                     onNext = { result ->
                         Timber.d("Colect exchange rates: $result")
+                        _uiState.value = ExchangeRatesUiState.Loading(false)
                         result.onSuccess { exchangeRates ->
                             Timber.d("Result success, exchange rates: $exchangeRates")
                             _uiState.value = ExchangeRatesUiState.Success(exchangeRates)
@@ -36,6 +38,7 @@ class ExchangeRatesViewModel(private val exchangeRatesUseCase: GetExchangeRatesU
                     },
                     onError = { exception ->
                         Timber.d("Error collecting data: $exception")
+                        _uiState.value = ExchangeRatesUiState.Loading(false)
                         _uiState.value = ExchangeRatesUiState.Error(exception)
                     }
                 )
@@ -46,4 +49,5 @@ class ExchangeRatesViewModel(private val exchangeRatesUseCase: GetExchangeRatesU
 sealed class ExchangeRatesUiState {
     data class Success(val rates: ExchangeRates) : ExchangeRatesUiState()
     data class Error(val exception: Throwable) : ExchangeRatesUiState()
+    data class Loading(val isLoading: Boolean) : ExchangeRatesUiState()
 }
