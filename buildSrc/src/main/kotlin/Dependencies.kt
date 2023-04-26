@@ -1,9 +1,5 @@
 @file:Suppress("unused")
 
-object Common {
-    const val logger = "com.jakewharton.timber:timber:5.0.1"
-}
-
 object Kotlin {
     @Suppress("MemberVisibilityCanBePrivate")
     const val version = "1.8.20"
@@ -99,8 +95,14 @@ object AndroidX {
 
 object ThirdParties{
     private const val viewBindingVersion = "1.5.9"
+    private const val glideVersion = "4.15.1"
+    private const val glideTransformationsVersion = "4.3.0"
+    private const val loggerVersion = "5.0.1"
 
     const val viewBinding = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$viewBindingVersion"
+    const val glide = "com.github.bumptech.glide:glide:$glideVersion"
+    const val glideTransformations = "jp.wasabeef:glide-transformations:$glideTransformationsVersion"
+    const val logger = "com.jakewharton.timber:timber:$loggerVersion"
 }
 
 object UnitTests {

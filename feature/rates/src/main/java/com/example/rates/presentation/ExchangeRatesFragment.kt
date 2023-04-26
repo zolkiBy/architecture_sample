@@ -43,8 +43,6 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views) {
 
         initCurrenciesList()
 
-        resources.getInteger(android.R.integer.config_shortAnimTime)
-
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
