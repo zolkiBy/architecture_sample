@@ -26,7 +26,7 @@ class ExchangeRatesViewModel(private val exchangeRatesUseCase: GetExchangeRatesU
             exchangeRatesUseCase(GetExchangeRatesUseCase.Params(2022))
                 .collect(
                     onNext = { result ->
-                        Timber.d("Colect exchange rates: $result")
+                        Timber.d("Collect exchange rates: $result")
                         _uiState.value = ExchangeRatesUiState.Loading(false)
                         result.onSuccess { exchangeRates ->
                             Timber.d("Result success, exchange rates: $exchangeRates")

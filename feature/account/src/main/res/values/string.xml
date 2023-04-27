@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="fragment_account_item_app_id">Application ID</string>
+    <string name="fragment_account_item_status">Status</string>
+    <string name="fragment_account_item_plan">Plan</string>
+    <string name="fragment_account_item_plan_quota">Plan quota</string>
+    <string name="fragment_account_item_number_requests">Number of requests</string>
+    <string name="fragment_account_item_requests_quota">Requests quota</string>
+    <string name="fragment_account_item_requests_remaining">Requests remaining</string>
+    <string name="fragment_account_item_requests_daily_average">Requests daily average</string>
+
     <string name="fragment_account_avatar_content_desc">Avatar</string>
 </resources>

@@ -3,8 +3,9 @@ package com.example.rates.data.model.dto
 import com.example.rates.data.model.CurrencyRate
 import com.example.rates.data.model.ExchangeRates
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@kotlinx.serialization.Serializable
+@Serializable
 class GetLatestRatesResponse(
     @SerialName("disclaimer") val disclaimer: String,
     @SerialName("license") val licence: String,

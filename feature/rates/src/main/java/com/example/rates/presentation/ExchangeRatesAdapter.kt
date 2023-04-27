@@ -29,7 +29,7 @@ class ExchangeRatesAdapter : ListAdapter<CurrencyRate, ExchangeRatesAdapter.Exch
         }
     }
 
-    private class ExchangeRatesDiffCallback() : DiffUtil.ItemCallback<CurrencyRate>() {
+    private class ExchangeRatesDiffCallback : DiffUtil.ItemCallback<CurrencyRate>() {
         override fun areItemsTheSame(oldItem: CurrencyRate, newItem: CurrencyRate): Boolean = oldItem.code == newItem.code
 
         override fun areContentsTheSame(oldItem: CurrencyRate, newItem: CurrencyRate): Boolean = oldItem == newItem
