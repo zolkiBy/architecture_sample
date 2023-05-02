@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="nav_deep_link">architecture-sample://com.example.feature.account/account_fragment</string>
 
     <string name="fragment_account_item_app_id">Application ID</string>
     <string name="fragment_account_item_status">Status</string>

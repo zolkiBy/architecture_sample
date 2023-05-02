@@ -1,7 +1,5 @@
-package com.example.mvicompose.di
+package com.example.base.di
 
-import com.example.base.di.NAME_DISPATCHER_IO
-import com.example.base.di.NAME_DISPATCHER_MAIN
 import com.example.base.network.interceptors.AuthInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.CoroutineDispatcher

@@ -29,6 +29,7 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":base:network")))
 
     api(Di.koinAndroid)
     api(Di.koinCompose)

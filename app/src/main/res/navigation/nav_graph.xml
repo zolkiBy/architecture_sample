@@ -5,4 +5,5 @@
     app:startDestination="@id/feature_rates_nav_graph">
 
     <include app:graph="@navigation/feature_rates_nav_graph" />
+    <include app:graph="@navigation/feature_account_nav_graph" />
 </navigation>

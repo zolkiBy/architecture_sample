@@ -6,7 +6,7 @@ import com.example.feature.account.data.model.AccountData
 import com.example.feature.account.data.net.AccountApi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import java.lang.Exception
+import timber.log.Timber
 
 class AccountRepositoryImpl(private val accountApi: AccountApi, private val coroutineDispatcher: CoroutineDispatcher) : AccountRepository {
     override suspend fun getAccountData(): Result<AccountData, Exception> {
@@ -16,12 +16,15 @@ class AccountRepositoryImpl(private val accountApi: AccountApi, private val coro
                 response.body() != null &&
                 response.body()?.isSuccess() == true
             ) {
+                Timber.d("Get usage response success")
                 response.body()?.toAccountData()?.let { accountData ->
+                    Timber.d("Get usage response data: $accountData")
                     Result.success(accountData)
                 } ?: Result.failure(ApiException())
             } else {
                 Result.failure(ApiException())
             }
+            Timber.d("Return following result: $result")
 
             result
         }

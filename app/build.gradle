@@ -52,6 +52,7 @@ dependencies {
     implementation project(path: ':base:di')
 
     implementation project(path: ':feature:rates')
+    implementation project(path: ':feature:account')
 
     testImplementation (UnitTests.junit)
     testImplementation (Coroutines.test)

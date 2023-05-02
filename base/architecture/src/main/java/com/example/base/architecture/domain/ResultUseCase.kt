@@ -4,15 +4,13 @@ import com.example.base.common.result.Result
 import com.example.base.common.result.resultOf
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 abstract class ResultUseCase<in P, R>(
     private val coroutineDispatcher: CoroutineDispatcher,
-    private val scope: CoroutineScope,
+    private val applicationScope: CoroutineScope,
 ) {
-
-    protected abstract suspend fun execute(parameters: P): R
 
     suspend operator fun invoke(parameters: P): Result<R, Exception> =
         resultOf {
@@ -21,7 +19,11 @@ abstract class ResultUseCase<in P, R>(
             }
         }
 
-    fun finish() {
-        scope.coroutineContext.cancel()
+    protected abstract suspend fun execute(parameters: P): R
+
+    suspend fun executeNonCancellableOperation(block: () -> Unit) {
+        withContext(coroutineDispatcher) {
+            applicationScope.launch { block() }.join()
+        }
     }
 }
