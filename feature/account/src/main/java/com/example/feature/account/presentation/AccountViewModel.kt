@@ -25,7 +25,7 @@ class AccountViewModel(private val accountDataUseCase: GetAccountDataUseCase) : 
             accountDataUseCase(Unit).collect(
                 onNext = { result ->
                     Timber.d("Collect account data: $result")
-                    _uiState.value = AccountUiState.Loading(true)
+                    _uiState.value = AccountUiState.Loading(false)
                     result.onSuccess { accountData ->
                         Timber.d("Result success, account data: $accountData")
                         val accountItems = listOf(

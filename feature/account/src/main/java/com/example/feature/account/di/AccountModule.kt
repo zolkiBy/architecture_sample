@@ -23,6 +23,5 @@ val accountModule = module {
     viewModel { AccountViewModel(accountDataUseCase = get()) }
 }
 
-private fun provideAccountApi(retrofit: Retrofit) {
+private fun provideAccountApi(retrofit: Retrofit): AccountApi =
     retrofit.create(AccountApi::class.java)
-}

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.data.api"
+    namespace = "com.example.feature.account.api"
     compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
@@ -16,10 +16,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
@@ -33,5 +30,4 @@ android {
 
 dependencies {
     implementation(project(mapOf("path" to ":base:common")))
-    implementation(project(mapOf("path" to ":base:architecture")))
 }

@@ -20,6 +20,5 @@ val ratesModule = module {
     viewModel { ExchangeRatesViewModel(exchangeRatesUseCase = get()) }
 }
 
-private fun provideExchangeRatesApi(retrofit: Retrofit): ExchangeRatesApi {
-    return retrofit.create(ExchangeRatesApi::class.java)
-}
+private fun provideExchangeRatesApi(retrofit: Retrofit): ExchangeRatesApi =
+    retrofit.create(ExchangeRatesApi::class.java)

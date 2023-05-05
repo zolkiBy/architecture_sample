@@ -38,4 +38,5 @@ dependencies {
     implementation(project(mapOf("path" to ":base:architecture")))
     implementation(project(mapOf("path" to ":base:ui-views")))
     implementation(project(mapOf("path" to ":base:di")))
+    implementation(project(mapOf("path" to ":feature:account-api")))
 }

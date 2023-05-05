@@ -7,24 +7,32 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.base.common.navigation.Navigator
 import com.example.feature.rates.R
 import com.example.feature.rates.databinding.FragmentExchangeRatesViewsBinding
 import com.example.rates.di.ratesModule
-import com.example.ui.views.extensions.shortFadeIn
-import com.example.ui.views.extensions.shortFadeOut
-import com.google.android.material.snackbar.Snackbar
+import com.example.ui.views.delegates.ShowSnackbarDelegate
+import com.example.ui.views.delegates.ShowSnackbarDelegateImpl
+import com.example.ui.views.delegates.ViewVisibilityAnimatorDelegate
+import com.example.ui.views.delegates.ViewVisibilityAnimatorDelegateImpl
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import timber.log.Timber
 
-class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views) {
+class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views),
+    ViewVisibilityAnimatorDelegate by ViewVisibilityAnimatorDelegateImpl(),
+    ShowSnackbarDelegate by ShowSnackbarDelegateImpl() {
 
     private val viewModel: ExchangeRatesViewModel by viewModel()
+
+    private val navigator: Navigator by inject()
 
     private val binding by viewBinding(FragmentExchangeRatesViewsBinding::bind, R.id.container)
     private val currenciesAdapter = ExchangeRatesAdapter()
@@ -32,7 +40,6 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views) {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        //TODO: need to find proper place to unload module in case of several screens
         loadKoinModules(ratesModule)
     }
 
@@ -40,6 +47,7 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.getDataBtn.setOnClickListener { viewModel.onBtnClicked() }
+        binding.goToAccountBtn.setOnClickListener { navigator.startAccountFeature(findNavController()) }
 
         initCurrenciesList()
 
@@ -49,20 +57,16 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views) {
                     Timber.d("Get UI state:$state")
                     when (state) {
                         is ExchangeRatesUiState.Success -> {
-                            if (state.rates.rates.isEmpty()) {
-                                //TODO: show empty reates view
+                            val rates = state.rates.rates
+                            if (rates.isEmpty()) {
+                                //TODO: show empty rates view
                             } else {
-                                currenciesAdapter.submitList(state.rates.rates)
+                                currenciesAdapter.submitList(rates)
                             }
                         }
 
-                        is ExchangeRatesUiState.Error -> {
-                            showSnackbar()
-                        }
-
-                        is ExchangeRatesUiState.Loading -> {
-                            showLoading(state.isLoading)
-                        }
+                        is ExchangeRatesUiState.Error -> showShortSnackbar(binding.root, R.string.fragment_rates_loading_error)
+                        is ExchangeRatesUiState.Loading -> showLoading(state.isLoading)
                     }
                 }
             }
@@ -72,6 +76,7 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views) {
     override fun onDestroy() {
         super.onDestroy()
 
+        //TODO: need to find proper place to unload module in case of several screens
         unloadKoinModules(ratesModule)
     }
 
@@ -87,15 +92,9 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views) {
 
     private fun showLoading(loading: Boolean) {
         if (loading) {
-            binding.coverView.shortFadeIn()
-            binding.progressIndicator.shortFadeIn()
+            shortFadeIn(binding.coverView, binding.progressIndicator)
         } else {
-            binding.coverView.shortFadeOut()
-            binding.progressIndicator.shortFadeOut()
+            shortFadeOut(binding.coverView, binding.progressIndicator)
         }
-    }
-
-    private fun showSnackbar() {
-        Snackbar.make(binding.root, R.string.fragment_rates_loading_error, Snackbar.LENGTH_SHORT).show()
     }
 }
