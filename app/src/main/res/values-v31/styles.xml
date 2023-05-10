@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/animated_splash_logo</item>
+        <item name="windowSplashScreenBackground">@color/ic_launcher_background_animated</item>
+        <item name="postSplashScreenTheme">@style/Theme.Application</item>
+        <item name="windowSplashScreenAnimationDuration">2147483647</item>
+    </style>
+</resources>

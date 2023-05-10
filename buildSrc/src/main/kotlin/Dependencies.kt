@@ -54,6 +54,7 @@ object AndroidX {
     private const val fragmentVersion = "1.5.6"
     private const val constrainyLayoutVersion = "2.1.4"
     private const val navigationVersion = "2.5.3"
+    private const val splashScreenVersion = "1.0.1"
 
     const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
 
@@ -64,6 +65,8 @@ object AndroidX {
 
     const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     const val navigationUi = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    const val splashScreen = "androidx.core:core-splashscreen:$splashScreenVersion"
 
     const val composeRuntime = "androidx.compose.runtime:runtime:$composeVersion"
     const val composeFoundation = "androidx.compose.foundation:foundation:$composeVersion"

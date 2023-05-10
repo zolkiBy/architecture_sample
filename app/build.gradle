@@ -55,6 +55,8 @@ dependencies {
     implementation project(path: ':feature:account')
     implementation project(path: ':feature:account-api')
 
+    implementation(AndroidX.splashScreen)
+
     testImplementation (UnitTests.junit)
     testImplementation (Coroutines.test)
 
