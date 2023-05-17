@@ -3,6 +3,7 @@ package com.example.mvicompose
 import android.app.Application
 import com.example.base.di.commonModule
 import com.example.base.di.networkModule
+import com.example.base.navigation.di.navigationModule
 import com.example.mvicompose.di.appModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -32,6 +33,7 @@ class App : Application() {
             modules(
                 listOf(
                     appModule,
+                    navigationModule,
                     commonModule,
                     networkModule,
                 )

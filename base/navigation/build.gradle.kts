@@ -1,11 +1,10 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlinx-serialization")
 }
 
 android {
-    namespace = "com.example.feature.rates"
+    namespace = "com.example.base.navigation"
     compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
@@ -27,19 +26,16 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":base:common")))
-    implementation(project(mapOf("path" to ":base:network")))
-    implementation(project(mapOf("path" to ":base:architecture")))
-    implementation(project(mapOf("path" to ":base:ui-views")))
-    implementation(project(mapOf("path" to ":base:di")))
-    implementation(project(mapOf("path" to ":base:navigation-api")))
+    api(project(mapOf("path" to ":base:navigation-api")))
+    api(project(mapOf("path" to ":base:di")))
+    implementation(project(mapOf("path" to ":feature:account")))
+    implementation(project(mapOf("path" to ":feature:account-api")))
+    implementation(project(mapOf("path" to ":feature:rates")))
     implementation(project(mapOf("path" to ":feature:rates-api")))
 
-    implementation(Kotlin.dateTime)
+    api(AndroidX.navigationFragment)
+    api(AndroidX.navigationUi)
 }

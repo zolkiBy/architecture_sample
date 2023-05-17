@@ -7,14 +7,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.example.base.common.navigation.Navigator
+import com.example.base.navigation.api.Navigator
 import com.example.feature.rates.R
 import com.example.feature.rates.databinding.FragmentExchangeRatesViewsBinding
 import com.example.rates.di.ratesModule
+import com.example.feature.rates.api.RatesDirection
 import com.example.ui.views.delegates.ShowSnackbarDelegate
 import com.example.ui.views.delegates.ShowSnackbarDelegateImpl
 import com.example.ui.views.delegates.ViewVisibilityAnimatorDelegate
@@ -32,7 +32,7 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views),
 
     private val viewModel: ExchangeRatesViewModel by viewModel()
 
-    private val navigator: Navigator by inject()
+    private val navigator: Navigator<RatesDirection> by inject()
 
     private val binding by viewBinding(FragmentExchangeRatesViewsBinding::bind, R.id.container)
     private val currenciesAdapter = ExchangeRatesAdapter()
@@ -47,7 +47,9 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views),
         super.onViewCreated(view, savedInstanceState)
 
         binding.getDataBtn.setOnClickListener { viewModel.onBtnClicked() }
-        binding.goToAccountBtn.setOnClickListener { navigator.startAccountFeature(findNavController()) }
+        binding.goToAccountBtn.setOnClickListener {
+            navigator.navigate(RatesDirection.ToAccount)
+        }
 
         initCurrenciesList()
 

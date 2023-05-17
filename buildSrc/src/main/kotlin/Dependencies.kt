@@ -6,7 +6,7 @@ object Kotlin {
     const val kspVersion = "$version-1.0.10"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
     const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
-    const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
+    const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 }
 
