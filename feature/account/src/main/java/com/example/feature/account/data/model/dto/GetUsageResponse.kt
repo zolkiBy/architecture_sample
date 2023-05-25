@@ -1,7 +1,7 @@
 package com.example.feature.account.data.model.dto
 
 import com.example.base.network.response.BaseResponse
-import com.example.feature.account.data.model.AccountData
+import com.example.base.model.AccountData
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

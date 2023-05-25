@@ -51,6 +51,7 @@ dependencies {
     implementation project(path: ':base:ui-views')
     implementation project(path: ':base:di')
     implementation project(path: ':base:navigation')
+    implementation project(path: ':base:persistentstorage')
 
     implementation project(path: ':feature:rates')
     implementation project(path: ':feature:account')

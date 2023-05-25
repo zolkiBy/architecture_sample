@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.feature.account.data.model.AccountData
 import com.example.feature.account.data.model.AccountDataItem
 import com.example.feature.account.databinding.ItemAccountBinding
 

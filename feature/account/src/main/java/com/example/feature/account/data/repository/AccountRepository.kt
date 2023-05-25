@@ -1,9 +1,10 @@
 package com.example.feature.account.data.repository
 
-import com.example.base.common.result.Result
-import com.example.feature.account.data.model.AccountData
-import java.lang.Exception
+import com.example.base.model.AccountData
+import kotlinx.coroutines.flow.Flow
 
 interface AccountRepository {
-    suspend fun getAccountData(): Result<AccountData, Exception>
+    suspend fun getAccountData(): Flow<AccountData>
+
+    suspend fun saveAccountData()
 }

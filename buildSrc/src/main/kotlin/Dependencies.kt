@@ -2,7 +2,7 @@
 
 object Kotlin {
     @Suppress("MemberVisibilityCanBePrivate")
-    const val version = "1.8.20"
+    const val version = "1.8.21"
     const val kspVersion = "$version-1.0.10"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
     const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
@@ -11,7 +11,7 @@ object Kotlin {
 }
 
 object Coroutines {
-    private const val version = "1.6.4"
+    private const val version = "1.7.0"
     const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
     const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
     const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -19,7 +19,7 @@ object Coroutines {
 
 object Retrofit {
     const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
-    const val serializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+    const val serializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
 }
 
 object Okhttp {
@@ -38,13 +38,13 @@ object Di {
 }
 
 object Material {
-    const val material = "com.google.android.material:material:1.9.0-rc01"
+    const val material = "com.google.android.material:material:1.9.0"
 }
 
 object AndroidX {
     @Suppress("MemberVisibilityCanBePrivate")
     const val composeVersion = "1.4.1"
-    const val composeCompilerVersion = "1.4.5"
+    const val composeCompilerVersion = "1.4.7"
     private const val lifecycleVersion = "2.6.1"
     private const val testVersion = "1.5.0"
     private const val extVersion = "1.1.5"

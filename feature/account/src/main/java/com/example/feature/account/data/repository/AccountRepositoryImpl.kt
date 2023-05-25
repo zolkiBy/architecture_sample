@@ -1,32 +1,43 @@
 package com.example.feature.account.data.repository
 
-import com.example.base.common.result.Result
-import com.example.base.network.exceptions.ApiException
-import com.example.feature.account.data.model.AccountData
+import com.example.base.model.AccountData
+import com.example.base.persistentstorage.dao.AccountDataDao
+import com.example.base.persistentstorage.model.asEntity
+import com.example.base.persistentstorage.model.toExternalModel
 import com.example.feature.account.data.net.AccountApi
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class AccountRepositoryImpl(private val accountApi: AccountApi, private val coroutineDispatcher: CoroutineDispatcher) : AccountRepository {
-    override suspend fun getAccountData(): Result<AccountData, Exception> {
+class AccountRepositoryImpl(
+    private val accountApi: AccountApi,
+    private val accountDataDao: AccountDataDao,
+    private val coroutineDispatcher: CoroutineDispatcher,
+) : AccountRepository {
+    override suspend fun getAccountData(): Flow<AccountData> {
         return withContext(coroutineDispatcher) {
+            accountDataDao.getAccountData()
+                .map {
+                    it.toExternalModel()
+                }
+        }
+    }
+
+    override suspend fun saveAccountData() {
+        withContext(coroutineDispatcher) {
             val response = accountApi.getUsage()
-            val result = if (response.isSuccessful &&
+            if (response.isSuccessful &&
                 response.body() != null &&
                 response.body()?.isSuccess() == true
             ) {
                 Timber.d("Get usage response success")
                 response.body()?.toAccountData()?.let { accountData ->
                     Timber.d("Get usage response data: $accountData")
-                    Result.success(accountData)
-                } ?: Result.failure(ApiException())
-            } else {
-                Result.failure(ApiException())
+                    accountDataDao.upsertAccountData(accountData.asEntity())
+                }
             }
-            Timber.d("Return following result: $result")
-
-            result
         }
     }
 }

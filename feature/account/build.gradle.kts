@@ -39,5 +39,7 @@ dependencies {
     implementation(project(mapOf("path" to ":base:ui-views")))
     implementation(project(mapOf("path" to ":base:di")))
     implementation(project(mapOf("path" to ":base:navigation-api")))
+    implementation(project(mapOf("path" to ":base:model")))
+    implementation(project(mapOf("path" to ":base:persistentstorage")))
     implementation(project(mapOf("path" to ":feature:account-api")))
 }

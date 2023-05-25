@@ -1,4 +1,4 @@
-package com.example.feature.account.data.model
+package com.example.base.model
 
 data class AccountData(
     val appId: String,
@@ -9,4 +9,4 @@ data class AccountData(
     val requestsQuota: Long,
     val requestsRemaining: Long,
     val dailyAverageUsage: Long,
-) 
+)

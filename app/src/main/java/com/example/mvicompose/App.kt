@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.base.di.commonModule
 import com.example.base.di.networkModule
 import com.example.base.navigation.di.navigationModule
+import com.example.base.persistentstorage.di.persistentStorageModule
 import com.example.mvicompose.di.appModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -36,6 +37,7 @@ class App : Application() {
                     navigationModule,
                     commonModule,
                     networkModule,
+                    persistentStorageModule,
                 )
             )
         }
