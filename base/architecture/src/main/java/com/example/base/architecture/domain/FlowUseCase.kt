@@ -7,7 +7,6 @@ import kotlinx.coroutines.withContext
 
 abstract class FlowUseCase<in P, R>(
     private val coroutineDispatcher: CoroutineDispatcher,
-    private val nonCancellableScope: CoroutineScope? = null
 ) {
 
     suspend operator fun invoke(parameters: P): Flow<R> =
