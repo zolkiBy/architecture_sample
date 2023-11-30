@@ -10,7 +10,7 @@ class LoadAndSaveAccountDataUseCase(
     coroutineDispatcher: CoroutineDispatcher,
     applicationScope: CoroutineScope,
     private val accountRepository: AccountRepository,
-) : NonCancellableUseCase<Unit>(coroutineDispatcher, applicationScope) {
+) : NonCancellableUseCase<Unit, Unit>(coroutineDispatcher, applicationScope) {
 
     override suspend fun executeNonCancellableOperation(parameters: Unit) {
         Timber.d("Start loading data from network and then save it in the persistent storage")

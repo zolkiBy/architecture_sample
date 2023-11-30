@@ -51,8 +51,8 @@ class AccountRepositoryImpl(
         }
     }
 
-    override suspend fun changeAccountData(appId: String, requestsAmount: Long) {
-        withContext(coroutineDispatcher) {
+    override suspend fun changeAccountData(appId: String, requestsAmount: Long): Int {
+        return withContext(coroutineDispatcher) {
             accountDataDao.updateAccountData(AccountDataRequests(appId, requestsAmount))
         }
     }

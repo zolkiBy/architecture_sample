@@ -11,6 +11,7 @@
     <string name="fragment_account_item_requests_remaining">Requests remaining</string>
     <string name="fragment_account_item_requests_daily_average">Requests daily average</string>
     <string name="fragment_account_loading_error">Loading error, please try once again!</string>
+    <string name="fragment_account_changing_data_error">Error change data, please try again!</string>
     <string name="fragment_account_avatar_content_desc">Avatar</string>
     <string name="fragment_account_change_data_btn_text">Change requests number</string>
     <string name="fragment_account_input_data_field_hint">Enter requests amount</string>

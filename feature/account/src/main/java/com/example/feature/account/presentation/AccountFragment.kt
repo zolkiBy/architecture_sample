@@ -59,7 +59,7 @@ class AccountFragment : Fragment(R.layout.fragment_account),
                 viewModel.uiState.collect { state ->
                     Timber.d("Collect state in fragment, state: $state")
                     when (state) {
-                        is AccountUiState.Success -> {
+                        is AccountUiState.DataSuccessfullyLoaded -> {
                             val accountData = state.accountDataItems
                             if (accountData.isEmpty()) {
                                 //TODO: show empty view
@@ -68,14 +68,26 @@ class AccountFragment : Fragment(R.layout.fragment_account),
                             }
                         }
 
-                        is AccountUiState.Error -> showShortSnackbar(binding.root, R.string.fragment_account_loading_error)
+                        is AccountUiState.Error -> showShortSnackbar(
+                            binding.root,
+                            R.string.fragment_account_loading_error
+                        )
+
                         is AccountUiState.Loading -> showLoading(state.isLoading)
                         is AccountUiState.AccountDataChanging -> {
                             binding.changeDataProgressIndicator.visible()
                             binding.changeDataButton.disable()
                             binding.inputDataField.disable()
                         }
-                        is AccountUiState.AccountDataHaveChanged -> {
+
+                        is AccountUiState.AccountDataChanged -> {
+                            state.exception?.let {
+                                showShortSnackbar(
+                                    binding.root,
+                                    R.string.fragment_account_changing_data_error
+                                )
+                            }
+
                             binding.changeDataProgressIndicator.invisible()
                             binding.changeDataButton.enable()
                             binding.inputDataField.apply {

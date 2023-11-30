@@ -10,7 +10,7 @@ class DeleteAccountDataUseCase(
     coroutineDispatcher: CoroutineDispatcher,
     applicationScope: CoroutineScope,
     private val accountRepository: AccountRepository,
-): NonCancellableUseCase<Unit>(coroutineDispatcher, applicationScope) {
+): NonCancellableUseCase<Unit, Unit>(coroutineDispatcher, applicationScope) {
 
     override suspend fun executeNonCancellableOperation(parameters: Unit) {
         Timber.d("Start deleting account data")

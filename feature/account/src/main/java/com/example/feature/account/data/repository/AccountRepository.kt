@@ -10,6 +10,5 @@ interface AccountRepository {
 
     suspend fun loadAndSaveAccountData()
 
-    // TODO: to think about returning boolean for successful or unsuccessful operation
-    suspend fun changeAccountData(appId: String, requestsAmount: Long)
+    suspend fun changeAccountData(appId: String, requestsAmount: Long): Int
 }

@@ -67,7 +67,7 @@ class AccountViewModel(
                                 accountData.dailyAverageUsage.toString()
                             ),
                         )
-                        _uiState.value = AccountUiState.Success(accountItems)
+                        _uiState.value = AccountUiState.DataSuccessfullyLoaded(accountItems)
                     },
                     onError = { exception ->
                         Timber.d("Error collecting account data: $exception")
@@ -84,24 +84,28 @@ class AccountViewModel(
         _uiState.value = AccountUiState.AccountDataChanging
         if (appId.isNotBlank()) {
             viewModelScope.launch {
-                changeAccountDataUseCase(
+                val dataChanged = changeAccountDataUseCase(
                     ChangeAccountDataUseCase.ChangeAccountDataParameters(
                         appId,
                         requestsAmount
                     )
                 )
-                _uiState.value = AccountUiState.AccountDataHaveChanged()
+                if (dataChanged) {
+                    _uiState.value = AccountUiState.AccountDataChanged()
+                } else {
+                    _uiState.value = AccountUiState.AccountDataChanged(Exception("Error when updating account data"))
+                }
             }
         } else {
-            _uiState.value = AccountUiState.AccountDataHaveChanged(Exception("App Id is blank"))
+            _uiState.value = AccountUiState.AccountDataChanged(Exception("App Id is blank"))
         }
     }
 }
 
 sealed class AccountUiState {
-    data class Success(val accountDataItems: List<AccountDataItem>) : AccountUiState()
+    data class DataSuccessfullyLoaded(val accountDataItems: List<AccountDataItem>) : AccountUiState()
     data class Error(val exception: Throwable) : AccountUiState()
     data class Loading(val isLoading: Boolean) : AccountUiState()
     data object AccountDataChanging : AccountUiState()
-    data class AccountDataHaveChanged(val exception: Exception? = null) : AccountUiState()
+    data class AccountDataChanged(val exception: Exception? = null) : AccountUiState()
 }

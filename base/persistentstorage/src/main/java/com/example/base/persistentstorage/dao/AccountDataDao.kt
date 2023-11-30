@@ -1,7 +1,6 @@
 package com.example.base.persistentstorage.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
@@ -22,5 +21,5 @@ interface AccountDataDao {
     suspend fun upsertAccountData(accountData: AccountDataEntity)
 
     @Update(entity = AccountDataEntity::class)
-    suspend fun updateAccountData(accountDataRequests: AccountDataRequests)
+    suspend fun updateAccountData(accountDataRequests: AccountDataRequests): Int
 }

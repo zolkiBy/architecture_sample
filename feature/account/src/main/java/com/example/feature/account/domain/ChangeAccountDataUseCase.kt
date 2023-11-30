@@ -10,15 +10,15 @@ class ChangeAccountDataUseCase(
     coroutineDispatcher: CoroutineDispatcher,
     applicationScope: CoroutineScope,
     private val accountRepository: AccountRepository,
-) : NonCancellableUseCase<ChangeAccountDataUseCase.ChangeAccountDataParameters>(
+) : NonCancellableUseCase<ChangeAccountDataUseCase.ChangeAccountDataParameters, Boolean>(
     coroutineDispatcher,
     applicationScope
 ) {
 
-    override suspend fun executeNonCancellableOperation(parameters: ChangeAccountDataParameters) {
+    override suspend fun executeNonCancellableOperation(parameters: ChangeAccountDataParameters): Boolean {
         Timber.d("Start changing account data")
-        accountRepository.changeAccountData(parameters.appId, parameters.requestsAmount)
-        Timber.d("Finish changing account data")
+        val rowsChanged = accountRepository.changeAccountData(parameters.appId, parameters.requestsAmount)
+        return rowsChanged > 0
     }
 
     data class ChangeAccountDataParameters(val appId: String, val requestsAmount: Long)
