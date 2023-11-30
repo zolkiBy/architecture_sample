@@ -26,6 +26,14 @@ fun View.visibleOrNot(isVisible: Boolean) {
     visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
 }
 
+fun View.disable() {
+    if (isEnabled) isEnabled = false else return
+}
+
+fun View.enable() {
+    if (isEnabled) return else isEnabled = true
+}
+
 fun View.shortFadeIn() {
     this.apply {
         alpha = 0f

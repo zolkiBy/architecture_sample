@@ -17,6 +17,10 @@ import com.example.ui.views.delegates.ShowSnackbarDelegate
 import com.example.ui.views.delegates.ShowSnackbarDelegateImpl
 import com.example.ui.views.delegates.ViewVisibilityAnimatorDelegate
 import com.example.ui.views.delegates.ViewVisibilityAnimatorDelegateImpl
+import com.example.ui.views.extensions.disable
+import com.example.ui.views.extensions.enable
+import com.example.ui.views.extensions.invisible
+import com.example.ui.views.extensions.visible
 import kotlinx.coroutines.launch
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
@@ -44,6 +48,12 @@ class AccountFragment : Fragment(R.layout.fragment_account),
 
         initAccountDataList()
 
+        binding.changeDataButton.setOnClickListener {
+            // TODO: check input value
+            val requestsAmount = binding.inputDataField.text.toString().toLong()
+            viewModel.onChangeDataButtonClicked(requestsAmount)
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
@@ -60,6 +70,19 @@ class AccountFragment : Fragment(R.layout.fragment_account),
 
                         is AccountUiState.Error -> showShortSnackbar(binding.root, R.string.fragment_account_loading_error)
                         is AccountUiState.Loading -> showLoading(state.isLoading)
+                        is AccountUiState.AccountDataChanging -> {
+                            binding.changeDataProgressIndicator.visible()
+                            binding.changeDataButton.disable()
+                            binding.inputDataField.disable()
+                        }
+                        is AccountUiState.AccountDataHaveChanged -> {
+                            binding.changeDataProgressIndicator.invisible()
+                            binding.changeDataButton.enable()
+                            binding.inputDataField.apply {
+                                setText("")
+                                enable()
+                            }
+                        }
                     }
                 }
             }

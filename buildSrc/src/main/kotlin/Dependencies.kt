@@ -2,16 +2,16 @@
 
 object Kotlin {
     @Suppress("MemberVisibilityCanBePrivate")
-    const val version = "1.8.21"
-    const val kspVersion = "$version-1.0.10"
+    const val version = "1.9.20"
+    const val kspVersion = "$version-1.0.14"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
     const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
-    const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
-    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
+    const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1"
+    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.1"
 }
 
 object Coroutines {
-    private const val version = "1.7.0"
+    private const val version = "1.7.3"
     const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
     const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
     const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -43,16 +43,15 @@ object Material {
 
 object AndroidX {
     @Suppress("MemberVisibilityCanBePrivate")
-    const val composeVersion = "1.4.1"
-    const val composeCompilerVersion = "1.4.7"
+    const val composeVersion = "1.5.4"
     private const val lifecycleVersion = "2.6.1"
     private const val testVersion = "1.5.0"
     private const val extVersion = "1.1.5"
-    private const val roomVersion = "2.5.1"
+    private const val roomVersion = "2.6.0"
     private const val coreKtxVersion = "1.10.0"
     private const val appcompatVersion = "1.6.1"
     private const val fragmentVersion = "1.5.6"
-    private const val constrainyLayoutVersion = "2.1.4"
+    private const val constraintLayoutVersion = "2.1.4"
     private const val navigationVersion = "2.5.3"
     private const val splashScreenVersion = "1.0.1"
 
@@ -61,7 +60,7 @@ object AndroidX {
     const val appCompat = "androidx.appcompat:appcompat:$appcompatVersion"
     const val fragment = "androidx.fragment:fragment-ktx:$fragmentVersion"
 
-    const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constrainyLayoutVersion"
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
     const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     const val navigationUi = "androidx.navigation:navigation-ui-ktx:$navigationVersion"

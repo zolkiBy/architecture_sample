@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.example.base.persistentstorage.dao.AccountDataDao
 import com.example.base.persistentstorage.model.AccountDataEntity
 
-@Database(entities = [AccountDataEntity::class], version = 1)
+@Database(entities = [AccountDataEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun accountDataDao(): AccountDataDao
 }

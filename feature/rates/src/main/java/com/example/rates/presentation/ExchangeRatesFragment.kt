@@ -47,9 +47,7 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views),
         super.onViewCreated(view, savedInstanceState)
 
         binding.getDataBtn.setOnClickListener { viewModel.onBtnClicked() }
-        binding.goToAccountBtn.setOnClickListener {
-            navigator.navigate(RatesDirection.ToAccount)
-        }
+        binding.goToAccountBtn.setOnClickListener { navigator.navigate(RatesDirection.ToAccount) }
 
         initCurrenciesList()
 
@@ -67,7 +65,11 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views),
                             }
                         }
 
-                        is ExchangeRatesUiState.Error -> showShortSnackbar(binding.root, R.string.fragment_rates_loading_error)
+                        is ExchangeRatesUiState.Error -> showShortSnackbar(
+                            binding.root,
+                            R.string.fragment_rates_loading_error
+                        )
+
                         is ExchangeRatesUiState.Loading -> showLoading(state.isLoading)
                     }
                 }
@@ -83,7 +85,8 @@ class ExchangeRatesFragment : Fragment(R.layout.fragment_exchange_rates_views),
     }
 
     private fun initCurrenciesList() {
-        val linerLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val linerLayoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         val dividerItem = DividerItemDecoration(requireContext(), linerLayoutManager.orientation)
         with(binding.currenciesView) {
             layoutManager = linerLayoutManager

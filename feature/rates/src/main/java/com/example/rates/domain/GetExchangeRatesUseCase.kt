@@ -7,7 +7,6 @@ import com.example.rates.data.model.ExchangeRates
 import com.example.rates.data.repository.ExchangeRatesRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.flow
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
@@ -55,7 +54,7 @@ class GetExchangeRatesUseCase(
         val resultDates = mutableListOf<String>()
         for (monthIndex in 1..numberOfMonths) {
             val instant = LocalDateTime(year, monthIndex, 1, 10, 0)
-                .toInstant(kotlinx.datetime.TimeZone.UTC)
+                .toInstant(TimeZone.UTC)
             val dateFormat = SimpleDateFormat(DATE_FORMATTER, Locale.UK)
             val date = dateFormat.format(Date(instant.toEpochMilliseconds())).also {
                 Timber.d("Formatted date for request: $it")
