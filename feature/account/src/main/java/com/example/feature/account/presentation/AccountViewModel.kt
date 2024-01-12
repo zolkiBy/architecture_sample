@@ -2,6 +2,7 @@ package com.example.feature.account.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.base.architecture.presentation.machine.FlowStateMachine
 import com.example.base.common.extensions.collect
 import com.example.feature.account.R
 import com.example.feature.account.data.model.AccountDataItem
@@ -17,6 +18,10 @@ class AccountViewModel(
     private val getAccountDataUseCase: GetAccountDataUseCase,
     private val changeAccountDataUseCase: ChangeAccountDataUseCase,
 ) : ViewModel() {
+
+    private val machine = FlowStateMachine(AccountScreenUiState(UserDataUiState.Loading(true), ChangeAccountDataAreaUiState.Idle())) {
+
+    }
 
     private val _uiState = MutableStateFlow<AccountUiState>(AccountUiState.Loading(true))
 
@@ -108,4 +113,20 @@ sealed class AccountUiState {
     data class Loading(val isLoading: Boolean) : AccountUiState()
     data object AccountDataChanging : AccountUiState()
     data class AccountDataChanged(val exception: Exception? = null) : AccountUiState()
+}
+
+data class AccountScreenUiState(
+    val userDataUiState: UserDataUiState,
+    val changeAccountDataAreaUiState: ChangeAccountDataAreaUiState,
+)
+
+sealed class UserDataUiState {
+    data class UserDataList(val accountDataItems: List<AccountDataItem>) : UserDataUiState()
+    data class Error(val exception: Throwable) : UserDataUiState()
+    data class Loading(val isLoading: Boolean) : UserDataUiState()
+}
+
+sealed class ChangeAccountDataAreaUiState {
+    data class Idle(val exception: Exception? = null) : ChangeAccountDataAreaUiState()
+    data object AccountDataChanging : ChangeAccountDataAreaUiState()
 }
